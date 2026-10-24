@@ -117,7 +117,13 @@ $('txt').textContent=LETTER;
 function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});$(id).classList.add('on')}
 function hearts(n){var e=['💗','💕','✨','🩷','💜'];for(var i=0;i<n;i++){var h=document.createElement('div');h.className='fl';h.textContent=e[i%5];h.style.left=Math.random()*92+'%';h.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(h);setTimeout(function(x){x.remove()},4200,h)}}
 var nos=['Sure ka? 🥹 Gamay ra ni nga surprise, para jud nimo.','Palihug na? 🩺💗 Isa ra ka minuto, promise.','Mohilak na ko ani oy 😭 I-YES na lang!','Ang NO button naay allergy sa imong kamot. Sulayi pag-YES. 🤧💉','Okay, maghulat ko… dili ni mawala. 🥺'],n=0;
-$('no').onclick=function(){$('q').textContent=nos[n%nos.length];n++};
+var ne=['🥹','😭','🥺','😤','🤧','💀'];
+$('no').onclick=function(){var b=$('no'),y=$('yes');$('q').textContent=nos[n%nos.length];n++;
+if(n>=7){b.textContent='YES 💗 (sige na)';b.style.transform='none';b.onclick=function(){y.click()};return}
+b.style.position='fixed';b.style.transition='all .3s';b.style.zIndex=7;
+b.style.left=(8+Math.random()*Math.max(innerWidth-150,10))+'px';b.style.top=(90+Math.random()*Math.max(innerHeight-190,10))+'px';
+b.style.fontSize=Math.max(18-n*1.5,9)+'px';b.textContent='NO '+ne[n%6];
+y.style.transform='scale('+Math.min(1+n*0.15,2)+')';y.style.transition='transform .3s'};
 $('yes').onclick=function(){$('q').textContent='Yay! I knew you would give this little surprise a chance. 🩺💕';hearts(18);setTimeout(function(){show('s2')},1600)};
 function openEnv(){$('env').classList.add('open');hearts(12);setTimeout(function(){$('letter').classList.add('on')},1300)}
 $('env').onclick=openEnv;$('openBtn').onclick=openEnv;
